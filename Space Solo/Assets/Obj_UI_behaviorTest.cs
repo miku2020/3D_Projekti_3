@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Obj_UI_behaviorTest : MonoBehaviour
 {
+
+    public GameObject Enote;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,18 +20,20 @@ public class Obj_UI_behaviorTest : MonoBehaviour
     }
 
     void OnTriggerStay(Collider other)
-    {
-        Debug.Log("something is hitting");
+    {       
         if (other.tag == "Obj_UI")
         {
-            Debug.Log("Triggered by Player" + other.name);
+            Enote.SetActive(true);
+            Debug.Log("Triggered by Player objname: " + other.name);
+            if (Input.GetKey(KeyCode.E))
+            {
+                other.GetComponent<AwakeObject>().AwakeGame();
+            }
+            
         }
     }
-
-    void OnCollisionStay(Collision other)
+    private void OnTriggerExit(Collider other)
     {
-        Debug.Log("something is hitting");
-        
+        Enote.SetActive(false);
     }
-
 }
