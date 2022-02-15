@@ -6,34 +6,39 @@ public class Obj_UI_behaviorTest : MonoBehaviour
 {
 
     public GameObject Enote;
+    private Collider target;
+    public bool LockBool = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (target != null && Input.GetKeyDown(KeyCode.E) && LockBool == false)
+        {
+            target.GetComponent<AwakeObject>().AwakeGame();
+        }
     }
 
-    void OnTriggerStay(Collider other)
-    {       
-        if (other.tag == "Obj_UI")
+    void OnTriggerEnter(Collider other)
+    {
+
+        target = other;
+        if (target != null && target.tag == "Obj_UI")
         {
             Enote.SetActive(true);
-            Debug.Log("Triggered by Player objname: " + other.name);
-            if (Input.GetKey(KeyCode.E))
-            {
-                other.GetComponent<AwakeObject>().AwakeGame();
-            }
+            Debug.Log("Triggered by Player objname: " + target.name);
             
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
+        target = null;
         Enote.SetActive(false);
     }
 }

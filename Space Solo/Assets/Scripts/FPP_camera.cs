@@ -13,7 +13,7 @@ public class FPP_camera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        CursorLock();
     }
 
     // Update is called once per frame
@@ -32,4 +32,14 @@ public class FPP_camera : MonoBehaviour
             transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
         }
     }
+
+    public void CursorUnlock()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void CursorLock()
+    {
+        Cursor.lockState = CursorLockMode.Locked;        
+    }
+
 }
