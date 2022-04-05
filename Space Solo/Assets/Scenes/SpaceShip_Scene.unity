@@ -9748,6 +9748,14 @@ PrefabInstance:
       propertyPath: speed
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2858523171271276471, guid: f04b494ba45cae846bd1af0fa746ed95, type: 3}
+      propertyPath: MouseSensitivity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232591416338606833, guid: f04b494ba45cae846bd1af0fa746ed95, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3232591416722767092, guid: f04b494ba45cae846bd1af0fa746ed95, type: 3}
       propertyPath: m_ClearFlags
       value: 1
