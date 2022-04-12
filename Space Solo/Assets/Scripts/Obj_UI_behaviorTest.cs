@@ -38,6 +38,10 @@ public class Obj_UI_behaviorTest : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        targetnull();
+    }
+    public void targetnull()
+    {
         target = null;
         Enote.SetActive(false);
     }
