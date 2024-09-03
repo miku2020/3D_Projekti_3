@@ -1,15 +1,18 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class Gamedata : MonoBehaviour
 {
 
     public PlayerData playerdata;
 
-    private const string JSON_FILE_NAME = "/TestSave.json";
+    private string JSON_FILE_NAME = "/TestSave.json";
+    private string JsonDirectory;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,7 @@ public class Gamedata : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SaveJsonData();
+            SaveJsonData("/TestSave.json");
         }
         if (Input.GetKeyDown(KeyCode.LeftShift)) 
         {
@@ -38,13 +41,27 @@ public class Gamedata : MonoBehaviour
 
 
     }
-    public void SaveJsonData()
+    public void SaveJsonData(string save_input)
     {
+        JSON_FILE_NAME = "/" + playerdata.playerName + "/" + save_input + ".json";
+        JsonDirectory = "/" + playerdata.playerName;
         string Json = JsonUtility.ToJson(playerdata);
         string filepath = Application.persistentDataPath + JSON_FILE_NAME;
-        Debug.Log(filepath);
-        System.IO.File.WriteAllText(filepath, Json);
-        Debug.Log("save created");
+        if (Directory.Exists(filepath))
+        {
+            Debug.Log("loi");
+            Debug.Log(filepath);
+            File.WriteAllText(filepath, Json);
+        }
+        else 
+        {
+            Debug.Log("yritt‰‰");
+            Directory.CreateDirectory(JsonDirectory);
+            Debug.Log(filepath);
+            File.WriteAllText(filepath, Json);
+        }
+        
+        Debug.Log("save created: " + save_input);
     }
 
     public void LoadJsonData()
