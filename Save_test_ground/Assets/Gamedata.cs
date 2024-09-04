@@ -13,6 +13,8 @@ public class Gamedata : MonoBehaviour
 
     private string JSON_FILE_NAME = "/TestSave.json";
     private string JsonDirectory;
+    [SerializeField]
+    private Button_test UIscript;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +34,12 @@ public class Gamedata : MonoBehaviour
         {
             SaveJsonData("/TestSave.json");
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift)) 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-         LoadJsonData();
-        } 
+            LoadJsonData();
+        }
 
-      
+
 
 
     }
@@ -47,20 +49,22 @@ public class Gamedata : MonoBehaviour
         JsonDirectory = "/" + playerdata.playerName;
         string Json = JsonUtility.ToJson(playerdata);
         string filepath = Application.persistentDataPath + JSON_FILE_NAME;
+        string jsondir = Application.persistentDataPath + JsonDirectory;
         if (Directory.Exists(filepath))
         {
             Debug.Log("loi");
             Debug.Log(filepath);
             File.WriteAllText(filepath, Json);
         }
-        else 
+        else
         {
             Debug.Log("yritt‰‰");
-            Directory.CreateDirectory(JsonDirectory);
+            Debug.Log("jsondir " + jsondir);
+            Directory.CreateDirectory(jsondir);
             Debug.Log(filepath);
             File.WriteAllText(filepath, Json);
         }
-        
+
         Debug.Log("save created: " + save_input);
     }
 
@@ -72,5 +76,28 @@ public class Gamedata : MonoBehaviour
         Debug.Log("my Json Data is " + playerdata);
     }
 
-   
+    public void getDirectiories()
+    {
+        string[] dirs = Directory.GetDirectories(Application.persistentDataPath);
+        foreach (string dir in dirs)
+        {
+            Debug.Log("dir on "+dir);
+            string dirname = Path.GetFileName(Path.GetFileName(dir));
+            //Debug.Log(dir);
+            UIscript.InstantiatePlayerdirs(dirname, dir);
+        }
+
+    }
+
+    public void getsaves(string path)
+    {
+        
+        //string[] savedirs = Directory.GetDirectories(path + "/");
+        string[] savedirs = Directory.GetFiles(path + "/");        
+        foreach (string dir in savedirs)
+        {
+            string dirname = Path.GetFileName(Path.GetFileName(dir));
+            Debug.Log(dir);
+        }
+    }
 }
