@@ -16,6 +16,11 @@ public class Button_test : MonoBehaviour
     [SerializeField]
     private GameObject playerboxPrefab;
 
+    [SerializeField]
+    GameObject saveField;
+    [SerializeField]
+    GameObject SaveBoxPrefab;
+
     public string playerpath;
     public string playersname;
     public void callbutton()
@@ -46,6 +51,6 @@ public class Button_test : MonoBehaviour
 
     public void InstantiateSaveDirs()
     {
-
+        Instantiate(SaveBoxPrefab, saveField.transform);
     }
 }

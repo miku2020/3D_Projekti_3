@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -10,11 +11,16 @@ public class Gamedata : MonoBehaviour
 {
 
     public PlayerData playerdata;
+    PlayerData loadedData;
 
     private string JSON_FILE_NAME = "/TestSave.json";
     private string JsonDirectory;
     [SerializeField]
     private Button_test UIscript;
+
+    public string loadedname;
+    public int loadedscore;
+    public System.DateTime loadedtime;
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +103,14 @@ public class Gamedata : MonoBehaviour
         foreach (string dir in savedirs)
         {
             string dirname = Path.GetFileName(Path.GetFileName(dir));
-            Debug.Log(dir);
+            var filedate = File.GetCreationTime(dir);
+            Debug.Log(dir + " " + filedate);
+            string json = File.ReadAllText(dir);
+            loadedData = JsonUtility.FromJson<PlayerData>(json);
+            loadedname = loadedData.playerName;
+            loadedscore = loadedData.Score;
+            loadedtime = filedate;
+            UIscript.InstantiateSaveDirs();
         }
     }
 }

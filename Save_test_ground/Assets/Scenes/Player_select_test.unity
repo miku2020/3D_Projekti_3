@@ -528,6 +528,8 @@ MonoBehaviour:
     playerName: miku
     Score: 0
   UIscript: {fileID: 1117331391}
+  loadedname: 
+  loadedscore: 0
 --- !u!4 &640085132
 Transform:
   m_ObjectHideFlags: 0
@@ -1001,6 +1003,8 @@ MonoBehaviour:
   gamedata: {fileID: 640085131}
   PlayerField: {fileID: 1974799393}
   playerboxPrefab: {fileID: 2648565762069211825, guid: f4982bc37b7865147aa42183c3160a39, type: 3}
+  saveField: {fileID: 1780376426}
+  SaveBoxPrefab: {fileID: 4268415676824559662, guid: 21e7faaa2c1eeee4ea9c9bdaf6b5a123, type: 3}
   playerpath: 
   playersname: 
 --- !u!4 &1117331392
@@ -1298,8 +1302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 167.81, y: 262.63}
-  m_SizeDelta: {x: 371.25, y: 41.253}
+  m_AnchoredPosition: {x: 171.47168, y: 262.63}
+  m_SizeDelta: {x: 363.9266, y: 41.253}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1222715907
 MonoBehaviour:
@@ -1550,7 +1554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -121, y: -260.6}
+  m_AnchoredPosition: {x: -122.12, y: -260.6}
   m_SizeDelta: {x: 198.8739, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382359666
@@ -2464,8 +2468,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156.16, y: -1.4331}
-  m_SizeDelta: {x: 755.44, y: 466.7161}
+  m_AnchoredPosition: {x: 156.16, y: 1.4179}
+  m_SizeDelta: {x: 755.44, y: 472.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666886965
 MonoBehaviour:
@@ -2570,8 +2574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -121.56, y: 262.63}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -116.03, y: 262.63}
+  m_SizeDelta: {x: 211.07, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1668337936
 MonoBehaviour:
@@ -2656,7 +2660,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -15.233612, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.4593506, y: 0, z: -0.34881592, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
