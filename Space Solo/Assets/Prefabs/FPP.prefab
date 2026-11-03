@@ -422,7 +422,7 @@ MonoBehaviour:
   cameratrans: {fileID: 3232591416722767089}
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   groundDistance: 0.4
   groundCheck: {fileID: 3232591415982098184}
   speed: 2

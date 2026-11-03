@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Obj_UI_behaviorTest : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class Obj_UI_behaviorTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null && Input.GetKeyDown(KeyCode.E) && LockBool == false)
+        Keyboard keyboard = Keyboard.current;
+        if (target != null && keyboard != null && keyboard.eKey.wasPressedThisFrame && !LockBool)
         {
             target.GetComponent<AwakeObject>().AwakeGame();
         }
