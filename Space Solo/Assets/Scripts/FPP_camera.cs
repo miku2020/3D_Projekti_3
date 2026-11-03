@@ -10,25 +10,26 @@ public class FPP_camera : MonoBehaviour
     public float MouseSensitivity = 100f;
     float xRotation = 0f;
     float yRotation = 0f;
-    bool hasLoggedMissingMouse;
-    bool hasLoggedBlockedMovement;
+    // Debug-tilat
+    // bool hasLoggedMissingMouse;
+    // bool hasLoggedBlockedMovement;
 
-    void OnEnable()
-    {
-        Debug.Log(
-            $"[Input Debug] {name}: FPP_camera enabled={isActiveAndEnabled}, " +
-            $"mouse={Mouse.current != null}, canMove={canMove}, " +
-            $"sensitivity={MouseSensitivity}, focused={Application.isFocused}.",
-            this);
-    }
+    // void OnEnable()
+    // {
+    //     Debug.Log(
+    //         $"[Input Debug] {name}: FPP_camera enabled={isActiveAndEnabled}, " +
+    //         $"mouse={Mouse.current != null}, canMove={canMove}, " +
+    //         $"sensitivity={MouseSensitivity}, focused={Application.isFocused}.",
+    //         this);
+    // }
 
     // Start is called before the first frame update
     void Start()
     {
         CursorLock();
-        Debug.Log(
-            $"[Input Debug] {name}: camera Start ran; cursor lock state={Cursor.lockState}.",
-            this);
+        // Debug.Log(
+        //     $"[Input Debug] {name}: camera Start ran; cursor lock state={Cursor.lockState}.",
+        //     this);
     }
 
     // Update is called once per frame
@@ -39,26 +40,26 @@ public class FPP_camera : MonoBehaviour
             Mouse mouse = Mouse.current;
             if (mouse == null)
             {
-                if (!hasLoggedMissingMouse)
-                {
-                    Debug.LogWarning($"[Input Debug] {name}: no current mouse detected.", this);
-                    hasLoggedMissingMouse = true;
-                }
+                // if (!hasLoggedMissingMouse)
+                // {
+                //     Debug.LogWarning($"[Input Debug] {name}: no current mouse detected.", this);
+                //     hasLoggedMissingMouse = true;
+                // }
 
                 return;
             }
 
-            hasLoggedMissingMouse = false;
+            // hasLoggedMissingMouse = false;
             Vector2 rawMouseDelta = mouse.delta.ReadValue();
             Vector2 mouseDelta = rawMouseDelta * MouseSensitivity * 0.1f;
-            if (rawMouseDelta != Vector2.zero)
-            {
-                Debug.Log(
-                    $"[Input Debug] {name}: mouse input received raw={rawMouseDelta}, " +
-                    $"applied={mouseDelta}, cursor={Cursor.lockState}, " +
-                    $"focused={Application.isFocused}.",
-                    this);
-            }
+            // if (rawMouseDelta != Vector2.zero)
+            // {
+            //     Debug.Log(
+            //         $"[Input Debug] {name}: mouse input received raw={rawMouseDelta}, " +
+            //         $"applied={mouseDelta}, cursor={Cursor.lockState}, " +
+            //         $"focused={Application.isFocused}.",
+            //         this);
+            // }
 
             xRotation -= mouseDelta.y;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -66,24 +67,24 @@ public class FPP_camera : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
         }
-        else if (!hasLoggedBlockedMovement)
-        {
-            Debug.LogWarning(
-                $"[Input Debug] {name}: camera input ignored because canMove is false.",
-                this);
-            hasLoggedBlockedMovement = true;
-        }
+        // else if (!hasLoggedBlockedMovement)
+        // {
+        //     Debug.LogWarning(
+        //         $"[Input Debug] {name}: camera input ignored because canMove is false.",
+        //         this);
+        //     hasLoggedBlockedMovement = true;
+        // }
     }
 
     public void CursorUnlock()
     {
         Cursor.lockState = CursorLockMode.None;
-        Debug.Log($"[Input Debug] {name}: cursor unlocked.", this);
+        // Debug.Log($"[Input Debug] {name}: cursor unlocked.", this);
     }
 
     public void CursorLock()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Debug.Log($"[Input Debug] {name}: cursor locked.", this);
+        // Debug.Log($"[Input Debug] {name}: cursor locked.", this);
     }
 }

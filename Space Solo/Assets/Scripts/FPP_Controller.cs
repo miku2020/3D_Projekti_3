@@ -17,34 +17,35 @@ public class FPP_Controller : MonoBehaviour
     public float gravity;
     public float maxspeed;
 
-    Vector2 previousInput;
-    bool hasLoggedInput;
-    bool hasLoggedMissingReferences;
-    bool hasLoggedMissingDevices;
+    // Debug-tilat
+    // Vector2 previousInput;
+    // bool hasLoggedInput;
+    // bool hasLoggedMissingReferences;
+    // bool hasLoggedMissingDevices;
 
-    void OnEnable()
-    {
-        Debug.Log(
-            $"[Input Debug] {name}: FPP_Controller enabled={isActiveAndEnabled}, " +
-            $"keyboard={Keyboard.current != null}, gamepad={Gamepad.current != null}, " +
-            $"controllerAssigned={controller != null}, cameraAssigned={cameratrans != null}, " +
-            $"groundCheckAssigned={groundCheck != null}.",
-            this);
-    }
+    // void OnEnable()
+    // {
+    //     Debug.Log(
+    //         $"[Input Debug] {name}: FPP_Controller enabled={isActiveAndEnabled}, " +
+    //         $"keyboard={Keyboard.current != null}, gamepad={Gamepad.current != null}, " +
+    //         $"controllerAssigned={controller != null}, cameraAssigned={cameratrans != null}, " +
+    //         $"groundCheckAssigned={groundCheck != null}.",
+    //         this);
+    // }
 
     // Update is called once per frame
     void Update()
     {
         if (controller == null || cameratrans == null || groundCheck == null)
         {
-            if (!hasLoggedMissingReferences)
-            {
-                Debug.LogError(
-                    $"[Input Debug] {name}: movement stopped because CharacterController, " +
-                    "camera Transform, or Ground Check is not assigned.",
-                    this);
-                hasLoggedMissingReferences = true;
-            }
+            // if (!hasLoggedMissingReferences)
+            // {
+            //     Debug.LogError(
+            //         $"[Input Debug] {name}: movement stopped because CharacterController, " +
+            //         "camera Transform, or Ground Check is not assigned.",
+            //         this);
+            //     hasLoggedMissingReferences = true;
+            // }
 
             return;
         }
@@ -72,32 +73,32 @@ public class FPP_Controller : MonoBehaviour
             input += gamepad.leftStick.ReadValue();
         }
 
-        if (keyboard == null && gamepad == null)
-        {
-            if (!hasLoggedMissingDevices)
-            {
-                Debug.LogWarning(
-                    $"[Input Debug] {name}: no current keyboard or gamepad detected.",
-                    this);
-                hasLoggedMissingDevices = true;
-            }
-        }
-        else
-        {
-            hasLoggedMissingDevices = false;
-        }
+        // if (keyboard == null && gamepad == null)
+        // {
+        //     if (!hasLoggedMissingDevices)
+        //     {
+        //         Debug.LogWarning(
+        //             $"[Input Debug] {name}: no current keyboard or gamepad detected.",
+        //             this);
+        //         hasLoggedMissingDevices = true;
+        //     }
+        // }
+        // else
+        // {
+        //     hasLoggedMissingDevices = false;
+        // }
 
         input = Vector2.ClampMagnitude(input, 1f);
-        bool inputChanged = !hasLoggedInput || input != previousInput;
-        if (inputChanged)
-        {
-            Debug.Log(
-                $"[Input Debug] {name}: movement input={input}, keyboard={keyboard != null}, " +
-                $"gamepad={gamepad != null}, focused={Application.isFocused}.",
-                this);
-            previousInput = input;
-            hasLoggedInput = true;
-        }
+        // bool inputChanged = !hasLoggedInput || input != previousInput;
+        // if (inputChanged)
+        // {
+        //     Debug.Log(
+        //         $"[Input Debug] {name}: movement input={input}, keyboard={keyboard != null}, " +
+        //         $"gamepad={gamepad != null}, focused={Application.isFocused}.",
+        //         this);
+        //     previousInput = input;
+        //     hasLoggedInput = true;
+        // }
 
         float x = input.x;
         float z = input.y;
@@ -112,14 +113,7 @@ public class FPP_Controller : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         velocity.y = Mathf.Max(velocity.y, maxspeed);
 
-        Vector3 displacement = move + velocity * Time.deltaTime;
-        CollisionFlags collisions = controller.Move(displacement);
-        if (input != Vector2.zero && inputChanged)
-        {
-            Debug.Log(
-                $"[Input Debug] {name}: CharacterController.Move called with displacement=" +
-                $"{displacement}, collisions={collisions}.",
-                this);
-        }
+        controller.Move(move + velocity * Time.deltaTime);
+        // Debug.Log($"[Input Debug] {name}: CharacterController.Move called, input={input}.", this);
     }
 }
